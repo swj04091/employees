@@ -30,7 +30,7 @@ public class IndexServlet extends HttpServlet {
 		//autoboxion, rappertype
 		request.setAttribute("employeesRowCount", employeesRowCount);
 		
-		request.getRequestDispatcher("/WEB-INF/views/Index.jsp").forward(request,response);
+		request.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(request,response);
 	}
 
 }
