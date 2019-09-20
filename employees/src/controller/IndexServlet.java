@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.EmployeesDao;
 
-@WebServlet("/index")
+@WebServlet({"/","/index"})	//url을 /과 /index로 대체한다.
 public class IndexServlet extends HttpServlet {
 	private EmployeesDao employeesDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
