@@ -14,7 +14,7 @@ import model.EmployeesDao;
 import vo.Employees;
 
 //url은 getEmployeesList로 받는다.
-@WebServlet("/getEmployeesList")
+@WebServlet("/employees/getEmployeesList")
 public class GetEmployeesListServlet extends HttpServlet {
 	
 	private EmployeesDao employeesDao;
