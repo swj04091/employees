@@ -9,16 +9,34 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.EmployeesDao;
+import model.*;
 
 @WebServlet({"/","/index"})	//url을 /과 /index로 대체한다.
 public class IndexServlet extends HttpServlet {
 	private EmployeesDao employeesDao;
+	private DepartmentsDao departmentsDao;
+	private DeptManagerDao deptManagerDao;
+	private DeptEmpDao deptEmpDao;
+	private SalariesDao salariesDao;
+	private TitlesDao titlesDao;
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("/index URL 요청");
 		
 		this.employeesDao = new EmployeesDao();
+		this.departmentsDao = new DepartmentsDao();
+		this.deptManagerDao = new DeptManagerDao();
+		this.deptEmpDao = new DeptEmpDao();
+		this.salariesDao = new SalariesDao();
+		this.titlesDao = new TitlesDao();
+		
+		
 		int employeesRowCount = employeesDao.selectEmployeesCount();
+		int departmentsRowCount = departmentsDao.selectDepartmentsCount();
+		int deptManagerRowCount = deptManagerDao.selectDeptManagerCount();
+		int deptEmpRowCount = deptEmpDao.selectDeptEmpDaoCount();
+		int salariesRowCount = salariesDao.selectSalariesCount();
+		int titlesRowCount = titlesDao.selectTitlesCount();
 		
 		// /WEB-INF/views/index.jsp
 		
@@ -29,6 +47,11 @@ public class IndexServlet extends HttpServlet {
 		
 		//autoboxion, rappertype
 		request.setAttribute("employeesRowCount", employeesRowCount);
+		request.setAttribute("departmentsRowCount", departmentsRowCount);
+		request.setAttribute("deptManagerRowCount", deptManagerRowCount);
+		request.setAttribute("deptEmpRowCount", deptEmpRowCount);
+		request.setAttribute("salariesRowCount", salariesRowCount);
+		request.setAttribute("titlesRowCount", titlesRowCount);
 		
 		request.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(request,response);
 	}

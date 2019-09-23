@@ -15,7 +15,7 @@ public class EmployeesDao {
 	public int selectEmployeesCount() {
 		int count = 0;
 		
-		final String sql = "SELECT COUNT(*) FROM employees";
+		final String sql = "SELECT COUNT(*) as cnt FROM employees";
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -26,7 +26,7 @@ public class EmployeesDao {
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			if(rs.next()) {
-				count = rs.getInt("COUNT(*)");
+				count = rs.getInt("cnt");
 			}
 			
 		}catch(Exception e) {	//자바의 변수 생명주기는 {}
@@ -85,5 +85,4 @@ public class EmployeesDao {
 			}
 		return list;
 	}
-	
 }
