@@ -7,6 +7,11 @@
 <title>사원 목록</title>
 </head>
 <body>
+
+	<div>
+		<a href="${pageContext.request.contextPath}/"> 홈으로</a>
+	</div>
+
 	<h1>사원 목록</h1>
 	<form method="get" action="${pageContext.request.contextPath}/employees/getEmployeesList">
 		<select name="limit">
@@ -34,7 +39,7 @@
 				<tr>
 					<td>${employees.empNo}</td>
 					<td>${employees.birthDate}</td>
-					<td>${employees.fitstName}</td>
+					<td>${employees.firstName}</td>
 					<td>${employees.lastName}</td>
 					<td>${employees.gender}</td>
 					<td>${employees.hireDate}</td>

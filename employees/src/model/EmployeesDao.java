@@ -44,6 +44,8 @@ public class EmployeesDao {
 				employees.setHireDate(rs.getString("hire_date"));
 				list.add(employees);
 			}
+			
+			System.out.println(list);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {

@@ -7,6 +7,11 @@
 <title>departmentsList</title>
 </head>
 <body>
+
+	<div>
+		<a href="${pageContext.request.contextPath}/"> 홈으로</a>
+	</div>
+
 <!-- servlet에서 처리 하는 내용을 출력 해주는 페이지 -->
 <h1>부서 목록</h1>
 <table border = "1">

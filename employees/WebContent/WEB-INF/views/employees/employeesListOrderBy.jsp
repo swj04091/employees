@@ -7,6 +7,11 @@
 <title>사원목록</title>
 </head>
 <body>
+
+	<div>
+		<a href="${pageContext.request.contextPath}/"> 홈으로</a>
+	</div>
+
 	<h1>사원 목록</h1>
 	<table border="1">
 		<thead>

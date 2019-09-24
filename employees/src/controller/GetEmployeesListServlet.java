@@ -30,15 +30,13 @@ public class GetEmployeesListServlet extends HttpServlet {
 		//employyesDao를 호출받는다.
 		employeesDao = new EmployeesDao();
 		
-		//employeesDao의  메소드를 참조하는데 메게변수로 limit로 받는다.
-		employeesDao.selectEmployeesList(limit);
+		List<Employees> list = employeesDao.selectEmployeesList(limit);
 		
-		//arraylist 생성
-		List<Employees> list = new ArrayList<Employees>();
+		System.out.println("servlet내 list: "+list);
 		
 		//request로 값을 넘길 때 list도 같이 넘겨준다.
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("WEB-INF/views/employees/employeesList.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/employees/employeesList.jsp").forward(request, response);
 		
 	}
 

@@ -62,7 +62,9 @@
 				<a href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=asc">오름차순</a>
 				<a href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=desc">내림차순</a>
 			</li>
-		
+			
+			<li><a href="${pageContext.request.contextPath}/titles/getTitlesListDistinct">업무 목록(중복제거 distinct)</a></li>
+			
 		</ul>
 	</div>
 	
