@@ -52,6 +52,7 @@ public class DepartmentsDao {
 		
 	try {
 		conn = DBHelper.getConnection();
+		stmt = conn.prepareStatement(sql);
 		rs = stmt.executeQuery();
 		
 		while(rs.next()) {
@@ -60,6 +61,7 @@ public class DepartmentsDao {
 			departments.setDeptName(rs.getString("dept_name"));
 			list.add(departments);
 		}
+		System.out.println(list);
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally {

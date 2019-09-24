@@ -14,8 +14,10 @@ import vo.Departments;
 
 @WebServlet("/departments/getDepartmentsList")	//url을 /departments/getDepartmentsList로 대체한다.
 public class GetDepartmentsListServlet extends HttpServlet {
-	private DepartmentsDao departmentsDao = new DepartmentsDao();	//DepartmentsDao를 호출 한다.
+	private DepartmentsDao departmentsDao;	//DepartmentsDao를 호출 한다.
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		departmentsDao = new DepartmentsDao();
 		List<Departments> list = departmentsDao.selectDepartmentsList();
 		//호출한 departmentsDao에 참조된 selectDepartmentsList()를 List로 저장한다.
 		
