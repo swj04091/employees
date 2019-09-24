@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
 
+import db.DBHelper;
+
 public class SalariesDao {
 	
 	public Map<String,Long> selectSalariesStatistics(){
@@ -17,8 +19,7 @@ public class SalariesDao {
 		ResultSet rs = null;
 		
 		try {
-			Class.forName("org.mariadb.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/employees","root","java1234");
+			conn = DBHelper.getConnection();
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			while(rs.next()) {
@@ -34,9 +35,7 @@ public class SalariesDao {
 			e.printStackTrace();
 		}finally {
 			try {
-				rs.close();
-				stmt.close();
-				conn.close();
+				DBHelper.close(rs, stmt, conn);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
@@ -54,8 +53,7 @@ public class SalariesDao {
 		ResultSet rs = null;
 		
 		try {
-			Class.forName("org.mariadb.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/employees","root","java1234");
+			conn = DBHelper.getConnection();
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			if(rs.next()) {
@@ -66,9 +64,7 @@ public class SalariesDao {
 			e.printStackTrace();
 		}finally {
 			try {
-				rs.close();
-				stmt.close();
-				conn.close();
+				DBHelper.close(rs, stmt, conn);
 			}catch(Exception e){
 				e.printStackTrace();
 			}

@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
+import db.DBHelper;
 import vo.Departments;
 
 //쿼리문을 입력해서 데이터 베이스에 있는 Departments 에 있는 데이터들을 가져와서 가져온 값을 departments에 저장한다.
@@ -21,8 +23,7 @@ public class DepartmentsDao {
 			ResultSet rs = null;
 			
 			try {
-				Class.forName("org.mariadb.jdbc.Driver");
-				conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/employees","root","java1234");
+				conn = DBHelper.getConnection();
 				stmt = conn.prepareStatement(sql);
 				rs = stmt.executeQuery();
 				if(rs.next()) {
@@ -33,9 +34,7 @@ public class DepartmentsDao {
 				e.printStackTrace();
 			}finally {
 				try {
-					rs.close();
-					stmt.close();
-					conn.close();
+					DBHelper.close(rs, stmt, conn);
 				}catch(Exception e){
 					e.printStackTrace();
 				}
@@ -52,9 +51,7 @@ public class DepartmentsDao {
 		String sql = "SELECT dept_no, dept_name FROM departments";
 		
 	try {
-		Class.forName("org.mariadb.jdbc.Driver");
-		conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/employees","root","java1234");
-		stmt = conn.prepareStatement(sql);
+		conn = DBHelper.getConnection();
 		rs = stmt.executeQuery();
 		
 		while(rs.next()) {
@@ -67,9 +64,7 @@ public class DepartmentsDao {
 			e.printStackTrace();
 		}finally {
 			try {
-				rs.close();
-				stmt.close();
-				conn.close();
+				DBHelper.close(rs, stmt, conn);
 			}catch(Exception e){
 				e.printStackTrace();
 			}

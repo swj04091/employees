@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import db.DBHelper;
 import vo.Employees;
 
 public class EmployeesDao {
@@ -27,8 +28,7 @@ public class EmployeesDao {
 		}
 		
 		try {
-			Class.forName("org.mariadb.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/employees","root","java1234");
+			conn = DBHelper.getConnection();
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			
@@ -50,9 +50,7 @@ public class EmployeesDao {
 			e.printStackTrace();
 		}finally {
 			try {
-				rs.close();
-				stmt.close();
-				conn.close();
+				DBHelper.close(rs, stmt, conn);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
@@ -72,8 +70,7 @@ public class EmployeesDao {
 		ResultSet rs = null;
 		
 		try {
-			Class.forName("org.mariadb.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/employees","root","java1234");
+			conn = DBHelper.getConnection();
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			if(rs.next()) {
@@ -84,9 +81,7 @@ public class EmployeesDao {
 			e.printStackTrace();
 		}finally {
 			try {
-				rs.close();
-				stmt.close();
-				conn.close();
+				DBHelper.close(rs, stmt, conn);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
@@ -105,9 +100,7 @@ public class EmployeesDao {
 		
 		try {
 			String sql = "SELECT emp_no, birth_date, first_name, last_name, gender, hire_date FROM employees Limit ?";
-			Class.forName("org.mariadb.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/employees","root","java1234");
-			
+			conn = DBHelper.getConnection();
 			
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1,limit);
@@ -127,9 +120,7 @@ public class EmployeesDao {
 				e.printStackTrace();
 			}finally {
 				try {
-					rs.close();
-					stmt.close();
-					conn.close();
+					DBHelper.close(rs, stmt, conn);
 				}catch(Exception e) {
 					e.printStackTrace();
 				}
