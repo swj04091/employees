@@ -65,11 +65,16 @@
 			
 			<li><a href="${pageContext.request.contextPath}/titles/getTitlesListDistinct">업무 목록(중복제거 distinct)</a></li>
 			<li><a href="${pageContext.request.contextPath}/salaries/getSalariesStatistics">연봉 통계값(count, sum, avg, max, min, std)</a></li>
+			<li><a href="${pageContext.request.contextPath}/employees/getEmployeesCountGender">사원수(성별 group by gender)</a></li>
+			<li><a href="${pageContext.request.contextPath}/departments/getDepartmentsCountByDeptNo">부서목록(이름까지)</a></li>
 		</ul>
 	</div>
 	
-	<div>
-		employees table total row count : <%=request.getAttribute("employeesRowCount") %>
-	</div>
+	<form method="post" action="${pageContext.request.contextPath}/employees/getEmployeesListBetween">
+		<input type="number" name="begin">~<input type="number" name="end">
+		<button type="submit">사원목록 between ... and ...</button>
+		(${minEmpNo}~${maxEmpNo})
+	</form>
+	
 </body>
 </html>

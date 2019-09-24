@@ -37,6 +37,8 @@ public class IndexServlet extends HttpServlet {
 		int deptEmpRowCount = deptEmpDao.selectDeptEmpDaoCount();
 		int salariesRowCount = salariesDao.selectSalariesCount();
 		int titlesRowCount = titlesDao.selectTitlesCount();
+		int maxEmpNo = employeesDao.selectEmpNo("max");
+		int minEmpNo = employeesDao.selectEmpNo("min");
 		
 		// /WEB-INF/views/index.jsp
 		
@@ -52,6 +54,8 @@ public class IndexServlet extends HttpServlet {
 		request.setAttribute("deptEmpRowCount", deptEmpRowCount);
 		request.setAttribute("salariesRowCount", salariesRowCount);
 		request.setAttribute("titlesRowCount", titlesRowCount);
+		request.setAttribute("maxEmpNo", maxEmpNo);
+		request.setAttribute("minEmpNo", minEmpNo);
 		
 		request.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(request,response);
 	}
