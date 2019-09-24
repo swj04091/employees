@@ -64,7 +64,7 @@
 			</li>
 			
 			<li><a href="${pageContext.request.contextPath}/titles/getTitlesListDistinct">업무 목록(중복제거 distinct)</a></li>
-			
+			<li><a href="${pageContext.request.contextPath}/salaries/getSalariesStatistics">연봉 통계값(count, sum, avg, max, min, std)</a></li>
 		</ul>
 	</div>
 	
