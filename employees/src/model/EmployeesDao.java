@@ -14,6 +14,51 @@ import vo.Employees;
 
 public class EmployeesDao {
 	
+	//로그인 정보를 세션에 저장
+	public int login(Employees employees) {
+			
+		int sessionEmpNo = employees.getEmpNo();
+		String sessionFirstName = employees.getFirstName();
+		String sessionLastName = employees.getLastName();
+			
+		System.out.println(sessionEmpNo);
+		System.out.println(sessionFirstName);
+		System.out.println(sessionLastName);
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT emp_no, first_name, last_name FROM employees WHERE emp_no=? and first_name=? and last_name=?";
+			
+		try {
+			conn = DBHelper.getConnection();
+			stmt = conn.prepareStatement(sql);
+				
+			stmt.setInt(1, sessionEmpNo);
+			stmt.setString(2, sessionFirstName);
+			stmt.setString(3, sessionLastName);
+			
+			System.out.println(stmt);
+			
+			rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				sessionEmpNo = rs.getInt("emp_no");
+			}else {
+				sessionEmpNo = 0;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBHelper.close(rs, stmt, conn);
+		}
+	
+		System.out.println(sessionEmpNo);
+		
+		return sessionEmpNo;
+	}	
+
 	//마지막페이지 확인
 	public int selectLastPage(int rowPerPage) {
 		/*

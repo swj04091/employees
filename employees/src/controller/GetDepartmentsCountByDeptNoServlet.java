@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.DepartmentsDao;
 
@@ -19,6 +20,15 @@ public class GetDepartmentsCountByDeptNoServlet extends HttpServlet {
 	private DepartmentsDao departmentsDao;	// DepartmentsDao 클래스에 참조되여있는 메소드를 사용하기 위해 DepartmentsDao타입으로 변수 하나를 생성하였다.
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//로그인 확인
+		HttpSession session= request.getSession();
+		System.out.println(session.getAttribute("login"));
+		if(session.getAttribute("login") == null) {	//처음접속이거나 로그인을 안했을 때
+			response.sendRedirect(request.getContextPath()+"/login");
+			return;
+		}		
+		
 		departmentsDao = new DepartmentsDao();	//departmentsDao에 DepartmentsDao() 메소드를 호출 했다.
 		
 		List<Map<String,Object>> list = departmentsDao.selectDepartmentsCountByDeptNo();

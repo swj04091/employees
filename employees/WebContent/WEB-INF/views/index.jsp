@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,16 +20,29 @@
 
 </head>
 <body>
+
 <div class="row">
+<div class="col"></div>
+<div class="col"></div>
+<div class="col"></div>
 <div class="col"></div>
 <div class="col"></div>
 <div class="col">
 	<h1>Index</h1>
 </div>
+
+<div class="col"></div>
+<div class="col"></div>
+<div class="col"></div>
+<div class="col"></div>
 <div class="col"></div>
 </div>
 
 	<div>
+		<c:if test="${login != null}">
+		<a href="${pageContext.request.contextPath}/Logout">로그아웃</a>
+		<!-- Controller -> /LogoutServlet -->
+		</c:if>
 		<table class="table-borderless">
 			<tr>
 				<td><a href="${pageContext.request.contextPath}/departments/getDepartmentsList"  class="btn btn-outline-info">부서 목록</a></td>
@@ -40,6 +54,7 @@
 				<td><a href="${pageContext.request.contextPath}/employees/getEmployeesCountGender"  class="btn btn-outline-info">사원수(성별 group by gender)</a></td>
 				<td><a href="${pageContext.request.contextPath}/departments/getDepartmentsCountByDeptNo"  class="btn btn-outline-info">부서목록(이름까지)</a></td>
 				<td><a href="${pageContext.request.contextPath}/employees/getEmployeesListByPage"  class="btn btn-outline-info">사원 목록 페이징(10명씩)</a></td>
+				<td><a href="${pageContext.request.contextPath}/departments/getDeptManagerListByPage" class="btn btn-outline-info">부서장 정보(페이징)</a></td>
 			</tr>
 		</table>
 	</div>
@@ -103,5 +118,6 @@
 		</form>
 	</div>
 	<div class="col"></div>
+	</div>
 </body>
 </html>

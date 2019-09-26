@@ -9,6 +9,11 @@
 <body>
 	<h1>사원 목록 between</h1>
 	
+	<c:if test="${login != null}">
+		<a href="${pageContext.request.contextPath}/Logout">로그아웃</a>
+		<!-- Controller -> /LogoutServlet -->
+	</c:if>
+	
 	<div>
 		<a href="${pageContext.request.contextPath}/"> 홈으로</a>
 	</div>
